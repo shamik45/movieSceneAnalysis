@@ -58,7 +58,7 @@ public class MediaConnector implements ApplicationContextAware
         int loop;
 
         for(loop=0; loop < numOfMediaFiles; loop++){
-            url = (String) ((JSONObject)((JSONObject) mediaJson.getJSONArray("entries").get(0)).getJSONArray("content").get(loop)).get("id");
+            url = (String) ((JSONObject)((JSONObject) mediaJson.getJSONArray("entries").get(0)).getJSONArray("content").get(loop)).get("url");
 
             log.info("url in loop is " + url + "  loop is " + loop);
 
