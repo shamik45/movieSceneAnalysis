@@ -153,6 +153,7 @@ public class AWSRekognitionProcessor implements ApplicationContextAware, Message
                     jsonMedia.put("id", ic.getMediaId());
                     jsonMedia.put("account", ic.getAccountId());
                     jsonMedia.put("label", scrubLabel);
+                    jsonMedia.put("title", ic.getTitle());
 
                     log.info(gson.toJson(jsonMedia));
 

@@ -35,6 +35,29 @@ public class MediaConnector implements ApplicationContextAware
     }
 
 
+    public String getMediaTitle(String id){
+
+        String title = "";
+
+        tokenGenerator tkgn = (tokenGenerator) applicationContext.getBean("TokenGenerator");
+        String token = tkgn.getToken();
+
+        String[] idToken = id.split("/");
+        String idToUse = idToken[idToken.length - 1 ];
+
+        String mediaUrlToCall = mediaUrl + "&token=" + token + "&byId=" + idToUse;
+
+        System.out.println("invoking media at " + mediaUrlToCall);
+
+        String mediaPayload = makeHttpCall(mediaUrlToCall);
+
+        JSONObject mediaJson =  new JSONObject(mediaPayload);
+
+        title =  ((JSONObject)mediaJson.getJSONArray("entries").get(0)).getString("title");
+
+        return title;
+    }
+
     public String getMediaVideoUrl(String id){
 
         tokenGenerator tkgn = (tokenGenerator) applicationContext.getBean("TokenGenerator");

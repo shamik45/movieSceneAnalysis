@@ -133,6 +133,7 @@ public class WorkflowNotifProcessor  implements ApplicationContextAware, Message
                             MediaConnector mc = (MediaConnector) applicationContext.getBean("MediaConnector");
 
                             String fileLocation = mc.getMediaVideoUrl(prc.getMediaId().toString());
+                            String mediaTitle = mc.getMediaTitle(prc.getMediaId().toString());
 
                             log.info("location is " + fileLocation);
 
@@ -168,6 +169,7 @@ public class WorkflowNotifProcessor  implements ApplicationContextAware, Message
                                             .getBean("ImageContainer");
                                     ic.setImage((String) iterator.next());
                                     ic.setAccountId(accountName);
+                                    ic.setTitle(mediaTitle);
                                     ic.setMediaId(prc.getMediaId().toString());
                                     //log.info("stuuf in json " + (String)iterator.next());
                                     jmsTemplate.convertAndSend(outputResultQueue, ic);
